@@ -1,0 +1,86 @@
+.blockpage
+{
+	width: 100%;
+	height: 100%;
+}
+
+
+.title
+{
+	display: flex;
+	justify-content: center;
+}
+.logo_game
+{
+	display: flex;
+	justify-content: center;
+}
+
+
+nav
+{
+	margin: 20%;
+	margin-bottom: 5%;
+	margin-top: 5%;
+	width: 60%;
+	height: 50px;
+}
+
+
+section
+{
+	display: flex;
+}
+body
+{
+	display: flex;
+	margin: auto;
+}
+article
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 60%;
+	padding: 30px;
+}
+p
+{
+	text-align: justify;
+}
+h1
+{
+	text-align: center;
+}
+aside
+{
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.index ul
+{
+	list-style-type: none;
+    position: fixed;
+    overflow: auto;
+    height: 100%;
+    width: 20%;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+.index a
+{
+	padding: 8px;
+	display: block;
+}
+.index li
+{
+	display: flex;
+	justify-content: space-around;
+	float: left;
+	width: 90%;	
+	border: 2px solid gray;
+	border-bottom: 1px;
+}
