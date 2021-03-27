@@ -21,99 +21,119 @@ h1
 	margin-bottom: 0px;
 	text-align: center;
 }
-header
+body
 {
 	background: white;
+	margin: 0;
 }
-.blockpage
+header
 {
 	height: 100%;
-}
-.title
-{
-	display: flex;
-	justify-content: center;
+	background: white;
+	width: 100%;
 }
 .title h1
 {
+	margin-top: 0px;
 	text-align: center;
 	font-family: "seeds";
 	font-size: 6em;
+	color: #70cba4;
 }
 .logo_game
 {
 	display: flex;
 	justify-content: center;
 }
-
-nav
+.main
 {
-	margin: 20%;
-	margin-bottom: 5%;
-	margin-top: 5%;
-	width: 60%;
-	height: 50px;
+	display: flex;
+	justify-content: center;
+	padding-left: 380px;
 }
-
 
 section
 {
 	display: flex;
-}
-body
-{
-	display: flex;
-	margin: auto;
 }
 article
 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 60%;
-	padding: 10px;
 	border:solid;
-	border-color: gray;
+	border-color: #e3c900;
 	border-top: 1px;
 	border-bottom: 1px;
+	background: #fef4d5;
 }
 article h1
 {
 	font-family: "lgc";
 	font-size: 2em;
-	background: black;
+	background: #00b79b;
 	color: white;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-top: 0;
 }
-
+article p
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
 .enval
 {
 	text-align: center;
 	color: white;
-	background: black;
+	background: #00b79b;
 	font-size: 2em;
 }
 
-aside
+
+header
 {
-	width: 20%;
+	height: 250px;
+}
+section
+{
 	display: flex;
-	flex-direction: column;
-	padding: 10px;
+}
+
+.presentation
+{
+	width: 80%;
+	padding-left: 10px;
+	top:240px;
+	bottom: 0;
+	right:0;
+	padding-right: 100px;
+	background: white;
 
 }
 .presentation h1,h2
 {
 	font-family: "soy";
-	font-size: 1.5em;
+	font-size: 1.7em;
 	text-align: center;
+}
+.nav
+{
+	width: 280px;
+	top:0;
+	padding-top: 298px;
+	padding-left: 100px;
+	position: fixed;
+	z-index: 1001;
+	padding-right: 0;
+	background: white;
 }
 .nav ul
 {
 	list-style-type: none;
     position: fixed;
     overflow: auto;
-    height: 100%;
-    width: 20%;
+    width: 280px;
 	display: flex;
 	flex-direction: column;
 	padding: 0;
@@ -122,6 +142,7 @@ aside
 {
 	padding: 8px;
 	display: block;
+	width: 250px;
 	text-decoration: none;
 	margin: auto;
 	color: black;
@@ -138,19 +159,54 @@ aside
 	justify-content: space-around;
 	float: left;
 }
-.nav li:hover
+.accueil:hover
 {
-	background: gray;
+	background: #00b79b;
 }
-
+.accueil a
+{
+	color: #00b79b;
+}
+.soutenances:hover
+{
+	background: #70cba4;
+}
+.soutenances a
+{
+	color: #70cba4;
+}
+.downloads:hover
+{
+	background: #ebe70e ;
+}
+.downloads a
+{
+	color: #ebe70e ;
+}
+.graphismes:hover
+{
+	color: #f75112;
+}
+.graphismes a
+{
+	color: #f75112;
+}
+.progression:hover
+{
+	background: #e3c900;
+}
+.progression a
+{
+	color: #e3c900;
+}
 footer
 {
 	display: flex;
 	flex-direction: column;
 	border:solid;
-	border-left: 0px;
-	border-right:1px;
 	border-color: gray;
+	z-index: 1001;
+	height: 20%;
 }
 footer h1
 {
