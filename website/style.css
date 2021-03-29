@@ -30,7 +30,8 @@ header
 {
 	height: 100%;
 	background: white;
-	width: 100%;
+	padding-left: 380px;
+	padding-right: 325px;
 }
 .title h1
 {
@@ -50,6 +51,7 @@ header
 	display: flex;
 	justify-content: center;
 	padding-left: 380px;
+	width: 80%;
 }
 
 section
@@ -58,9 +60,9 @@ section
 }
 article
 {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	border:solid;
 	border-color: #e3c900;
 	border-top: 1px;
@@ -69,6 +71,7 @@ article
 }
 article h1
 {
+	top: 0;
 	font-family: "lgc";
 	font-size: 2em;
 	background: #00b79b;
@@ -102,9 +105,9 @@ section
 
 .presentation
 {
-	width: 80%;
+	width: 300px;
 	padding-left: 10px;
-	top:240px;
+	top:250px;
 	bottom: 0;
 	right:0;
 	padding-right: 100px;
@@ -121,7 +124,7 @@ section
 {
 	width: 280px;
 	top:0;
-	padding-top: 298px;
+	padding-top: 250px;
 	padding-left: 100px;
 	position: fixed;
 	z-index: 1001;
@@ -130,6 +133,7 @@ section
 }
 .nav ul
 {
+	margin-top: 0;
 	list-style-type: none;
     position: fixed;
     overflow: auto;
@@ -185,12 +189,13 @@ section
 }
 .graphismes:hover
 {
-	color: #f75112;
+	background: #f75112;
 }
 .graphismes a
 {
 	color: #f75112;
 }
+
 .progression:hover
 {
 	background: #e3c900;
@@ -199,6 +204,16 @@ section
 {
 	color: #e3c900;
 }
+.soutenances_ul
+{
+	display: flex;
+	background: white;
+	list-style-type: none;
+	justify-content: space-around;
+	font-family: "lgc";
+	font-size: 1.7em;
+}
+
 footer
 {
 	display: flex;
