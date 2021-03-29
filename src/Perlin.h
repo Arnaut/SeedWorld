@@ -6,12 +6,12 @@
 typedef struct Map
 {
     float* data;     // Pixel Lists.
-    int width;
     int height;
+    int width;
 } Map;
 
-struct Map GenerateMap(int width, int height);
-float* InitSeedArray(int width, int height);
+struct Map GenerateMap(int height, int width);
+float* InitSeedArray(int height, int width);
 void printMap(struct Map map);
-void PerlinNoise(int width, int height,int octaves);
+void PerlinNoise(int height, int width/*,int octaves*/);
 #endif //MAIN_C_PERLIN_H

@@ -3,6 +3,6 @@
 
 int main() {
     printf("Hello, World!\n");
-    PerlinNoise(4, 4,4);
+    PerlinNoise(8, 8);
     return 0;
 }

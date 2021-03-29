@@ -4,7 +4,7 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 SOURCE      = $(call rwildcard, src/, *.c)
 OBJS        = $(SOURCE:%.c=_build/%.o)
 HEADER      = $(SOURCE:.c=.h)
-OUT         = CText.exe
+OUT         = SeedWorld.exe
 CC          = gcc
 FLAGS       = -O3
 DEBUG_FLAGS = -O0

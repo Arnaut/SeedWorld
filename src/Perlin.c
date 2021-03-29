@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Map GenerateMap(int width, int height){
+struct Map GenerateMap(int height, int width){
     Map map =
             {
                     .data = malloc((height*width)*sizeof(float)),
@@ -16,20 +16,20 @@ struct Map GenerateMap(int width, int height){
     {
         for (int w = 0; w < map.width; ++w)
         {
-            map.data[h*height+w] = 0;
+            map.data[h*width+w] = 0;
         }
     }
     return map;
 }
 
-float* InitSeedArray(int width, int height)
+float* InitSeedArray(int height, int width)
 {
     float* Seed = malloc((height*width)*sizeof(float));
     for (int h = 0; h < height; ++h)
     {
         for (int w = 0; w < width; ++w)
         {
-            Seed[h*height+w] = (float)rand()/(float)RAND_MAX;
+            Seed[h*width+w] = (float)rand()/(float)RAND_MAX;
         }
     }
     return Seed;
@@ -46,25 +46,48 @@ void printMap(struct Map map){
     }
 }
 
-/*void Noise2D (Map map,int octaves,float *Seed)
+void Noise2D (Map map,int octaves,float *Seed)
 {
-    for (int h = 0; h < map.height; ++h)
+    for (int x = 0; x < map.width; ++x)
     {
-        for (int w = 0; w < map.width; ++w)
+        for (int y = 0; y < map.height; ++y)
         {
-            float fNoise = 0.0f;
+            float Noise = 0;
+	    float Scale = 1;
+	    float ScaleSum = 0;
             for (int o = 0; o < octaves; o++)
             {
+	      int Pitch = map.width >> o;
+	      int SampleX1 = (x / Pitch) * Pitch;
+	      int SampleY1 = (y / Pitch) * Pitch;
+	      int SampleX2 = (SampleX1 + Pitch) % map.width;
+	      int SampleY2 = (SampleY1 + Pitch) % map.width;
+
+	      float BlendX = (float)(x - SampleX1) / (float)Pitch;
+	      float BlendY = (float)(y - SampleY1) / (float)Pitch;
+
+	      float SampleT = (1 + BlendX) * Seed[SampleY1 * map.width + SampleX1] + BlendX * Seed[SampleY1 * map.width + SampleX2];
+	      float SampleB = (1 + BlendX) * Seed[SampleY2 * map.width + SampleX1] + BlendX * Seed[SampleY2 * map.width + SampleX2];
+
+	      Noise += (BlendY * (SampleB - SampleT) + SampleT) * Scale;
+	      ScaleSum += Scale;
+	      Scale = Scale / 2;
 
             }
+	    map.data[y * map.width + x] = Noise / ScaleSum;
         }
     }
-}*/
+}
 
 
-void PerlinNoise(int width, int height,int octaves) {
-    Map map = GenerateMap(width,height);
-    float* Seed = InitSeedArray(width,height);
+void PerlinNoise(int height, int width/*,int octaves*/) {
+    Map map = GenerateMap(height,width);
+    float* Seed = InitSeedArray(height,width);
+    Noise2D(map,3,Seed);
     printMap(map);
     free(map.data);
+    map.data = Seed;
+    printf("==============\n");
+    printMap(map);
+    free(Seed);
 }
