@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
-    PerlinNoise(8, 8);
+    PerlinNoise(256, 256);
     return 0;
 }

@@ -2,6 +2,7 @@
 // date: 13.03.2021.
 
 #include "Perlin.h"
+#include "gen.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -57,6 +58,7 @@ void Noise2D (Map map,int octaves,float *Seed)
 	    float ScaleSum = 0;
             for (int o = 0; o < octaves; o++)
             {
+	      ScaleSum += Scale;
 	      int Pitch = map.width >> o;
 	      int SampleX1 = (x / Pitch) * Pitch;
 	      int SampleY1 = (y / Pitch) * Pitch;
@@ -70,8 +72,7 @@ void Noise2D (Map map,int octaves,float *Seed)
 	      float SampleB = (1 + BlendX) * Seed[SampleY2 * map.width + SampleX1] + BlendX * Seed[SampleY2 * map.width + SampleX2];
 
 	      Noise += (BlendY * (SampleB - SampleT) + SampleT) * Scale;
-	      ScaleSum += Scale;
-	      Scale = Scale / 2;
+	      Scale = Scale / 4;
 
             }
 	    map.data[y * map.width + x] = Noise / ScaleSum;
@@ -83,11 +84,11 @@ void Noise2D (Map map,int octaves,float *Seed)
 void PerlinNoise(int height, int width/*,int octaves*/) {
     Map map = GenerateMap(height,width);
     float* Seed = InitSeedArray(height,width);
-    Noise2D(map,3,Seed);
-    printMap(map);
-    free(map.data);
-    map.data = Seed;
-    printf("==============\n");
-    printMap(map);
+    Noise2D(map,6,Seed);
     free(Seed);
+    SDL_Surface* img = load_image("src/to_test.png");
+    gen_img(map.data,map.height,map.width,img);
+    //printMap(map);
+    free(map.data);
+    
 }
