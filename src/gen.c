@@ -105,6 +105,7 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
 
   display_image(img);
 
+  SDL_SaveBMP(img,"tested.bmp");
   wait_for_keypressed();
 
   return mat_next;
