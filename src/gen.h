@@ -2,10 +2,9 @@
 #define GEN_H
 
 #include <stdlib.h>
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "pixel_operations.h"
 #include <SDL.h>
+#include <SDL_image.h>
+#include "pixel_operations.h"
 
 void init_sdl();
 SDL_Surface* load_image(char *path);
