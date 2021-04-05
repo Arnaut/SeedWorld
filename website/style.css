@@ -209,6 +209,13 @@ section
 	font-size: 1.7em;
 }
 
+.pic
+{
+	display: flex;
+	justify-content: space-around;
+	background: white;
+}
+
 footer
 {
 	display: flex;
