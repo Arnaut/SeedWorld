@@ -65,20 +65,16 @@ void wait_for_keypressed()
     } while(event.type != SDL_KEYUP);
 }
 
-
-SDL_Surface* the_creator(size_t width, size_t height)
-{
-  SDL_Surface* map = SDL_CreateRGBSurface(0,width,height,32,0,0,0,0);
-  return map;
-}
-
 int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
 {
+  init_sdl();
   Uint32 pixel;
 
   Uint8 r, g, b;
 
   int* mat_next = malloc(rows * cols * sizeof(int));
+
+  img = load_image("to_test.png");
 
   for(size_t i = 0;i < cols; i++)
     {
@@ -107,5 +103,10 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
         }
     }
 
+  display_image(img);
+
+  wait_for_keypressed();
+  
+  SDL_Quit;
   return mat_next;
 }
