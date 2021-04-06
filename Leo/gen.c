@@ -65,13 +65,20 @@ void wait_for_keypressed()
     } while(event.type != SDL_KEYUP);
 }
 
+
+SDL_Surface* the_creator(size_t width, size_t height)
+{
+  SDL_Surface* map = SDL_CreateRGBSurface(0,width,height,32,0,0,0,0);
+  return map;
+}
+
 int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
 {
   Uint32 pixel;
 
   Uint8 r, g, b;
 
-  int* mat_next = malloc(rows * cols);
+  int* mat_next = malloc(rows * cols * sizeof(int));
 
   for(size_t i = 0;i < cols; i++)
     {
@@ -79,19 +86,19 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
         {
           if(*(mat + (i * cols + j)) < (float)1.0)
             {
-              pixel = SDL_MapRGB(image_surface->format, 46, 139, 87);
+              pixel = SDL_MapRGB(img->format, 46, 139, 87);
               *(mat_next + (i*cols + j)) = 0;
               //ocean
             }
           else if (*(mat + (i * cols + j)) < (float)2.0)
             {
-              pixel = SDL_MapRGB(image_surface->format, 224, 205, 169);
+              pixel = SDL_MapRGB(img->format, 224, 205, 169);
               *(mat_next + (i*cols + j)) = 1;
               //sand
             }
           else
             {
-              pixel = SDL_MapRGB(image_surface->format, 124, 252, 0);
+              pixel = SDL_MapRGB(img->format, 124, 252, 0);
               *(mat_next + (i*cols + j)) = 2;
               //ground
             }

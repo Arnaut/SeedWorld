@@ -132,6 +132,25 @@
             <property name="height">10</property>
           </packing>
         </child>
+
+        <child>
+          <object class="GtkButton" id="close_button2">
+            <property name="label" translatable="yes">Close</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Close the file</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">30</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
   </object>
 
   <object class="GtkGrid" id="grido3">
@@ -165,6 +184,27 @@
             <property name="height">10</property>
           </packing>
         </child>
+
+        <child>
+          <object class="GtkButton" id="close_button3">
+            <property name="label" translatable="yes">Close</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Close the file</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">10</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
   </object>
+
+
 </interface>
     

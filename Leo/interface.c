@@ -10,10 +10,13 @@ typedef struct UserInterface
   GtkWindow* window;             // Main window
   GtkButton* start_button;        // Start button
   GtkButton* close_button;       // Close button
+  GtkButton* close_button2;
+  GtkButton* close_button3;
   GtkButton* with_seed_button;
   GtkButton* get_seed_button;
   GtkButton* gen_start_button;
   GtkButton* gen_param_button;
+  //GtkButton* small_close;
 
   GtkGrid* grid1;
   GtkGrid* grid2;
@@ -87,6 +90,8 @@ int main()
        .window = GTK_WINDOW(gtk_builder_get_object(builder, "org.gtk.SeedWorld")),
        .start_button = GTK_BUTTON(gtk_builder_get_object(builder, "start_button")),
        .close_button = GTK_BUTTON(gtk_builder_get_object(builder, "close_button")),
+       .close_button2 = GTK_BUTTON(gtk_builder_get_object(builder, "close_button2")),
+       .close_button3 = GTK_BUTTON(gtk_builder_get_object(builder, "close_button3")),
        .with_seed_button = GTK_BUTTON(gtk_builder_get_object(builder, "with_seed_button")),
        .get_seed_button = GTK_BUTTON(gtk_builder_get_object(builder, "get_seed_button")),
        .gen_start_button = GTK_BUTTON(gtk_builder_get_object(builder, "gen_start_button")),
@@ -105,6 +110,8 @@ int main()
 
     g_signal_connect(ui.start_button, "clicked", G_CALLBACK(on_start), &ui);
     g_signal_connect(ui.close_button, "clicked", G_CALLBACK(gtk_main_quit), &ui);
+    g_signal_connect(ui.close_button2, "clicked", G_CALLBACK(gtk_main_quit), &ui);
+    g_signal_connect(ui.close_button3, "clicked", G_CALLBACK(gtk_main_quit), &ui);
     g_signal_connect(ui.with_seed_button, "clicked", G_CALLBACK(on_with_seed), &ui);
     g_signal_connect(ui.get_seed_button, "clicked", G_CALLBACK(on_get_seed), &ui);
     g_signal_connect(ui.gen_start_button, "clicked", G_CALLBACK(on_gen_start), &ui);
