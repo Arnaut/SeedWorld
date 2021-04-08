@@ -70,11 +70,11 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
   init_sdl();
   Uint32 pixel;
 
-  Uint8 r, g, b;
+  //Uint8 r, g, b;
 
   int* mat_next = malloc(rows * cols * sizeof(int));
 
-  img = load_image("to_test.png");
+  //img = load_image("to_test.png");
 
   for(size_t i = 0;i < cols; i++)
     {
@@ -82,7 +82,7 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
         {
           if(*(mat + (i * cols + j)) < (float)1.0)
             {
-              pixel = SDL_MapRGB(img->format, 46, 139, 87);
+              pixel = SDL_MapRGB(img->format, 0, 0, 87);
               *(mat_next + (i*cols + j)) = 0;
               //ocean
             }
@@ -94,19 +94,18 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
             }
           else
             {
-              pixel = SDL_MapRGB(img->format, 124, 252, 0);
+              pixel = SDL_MapRGB(img->format, 0, 252, 0);
               *(mat_next + (i*cols + j)) = 2;
               //ground
             }
 
-          put_pixel(image_surface, i, j, pixel);
+          put_pixel(img, i, j, pixel);
         }
     }
 
   display_image(img);
 
   wait_for_keypressed();
-  
-  SDL_Quit;
+
   return mat_next;
 }
