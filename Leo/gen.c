@@ -80,13 +80,13 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
     {
       for(size_t j = 0; j < rows; j++)
         {
-          if(*(mat + (i * cols + j)) < (float)1.0)
+          if(*(mat + (i * cols + j)) < (float)0.3)
             {
               pixel = SDL_MapRGB(img->format, 0, 0, 87);
               *(mat_next + (i*cols + j)) = 0;
               //ocean
             }
-          else if (*(mat + (i * cols + j)) < (float)2.0)
+          else if (*(mat + (i * cols + j)) < (float)0.6)
             {
               pixel = SDL_MapRGB(img->format, 224, 205, 169);
               *(mat_next + (i*cols + j)) = 1;
