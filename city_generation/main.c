@@ -5,8 +5,8 @@
 
 
 
-#define ROWS 100
-#define COLS 100
+#define ROWS 50
+#define COLS 50
 int map1[ROWS*COLS]={0};
 /* 
 #define ROWS2 2100
