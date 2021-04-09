@@ -47,7 +47,7 @@ void printMap(struct Map map){
     }
 }
 
-void Noise2D (Map map,int octaves,float *Seed)
+void Noise2D (Map map,int octaves,float biais,float *Seed)
 {
     for (int x = 0; x < map.width; ++x)
     {
@@ -72,7 +72,7 @@ void Noise2D (Map map,int octaves,float *Seed)
 	      float SampleB = (1 - BlendX) * Seed[SampleY2 * map.width + SampleX1] + BlendX * Seed[SampleY2 * map.width + SampleX2];
 
 	      Noise += (BlendY * (SampleB - SampleT) + SampleT) * Scale;
-	      Scale = Scale / 1.5;
+	      Scale = Scale / biais;
 
             }
 	    map.data[y * map.width + x] = Noise / ScaleSum;
@@ -81,10 +81,10 @@ void Noise2D (Map map,int octaves,float *Seed)
 }
 
 
-void PerlinNoise(int height, int width/*,int octaves*/) {
+void PerlinNoise(int height, int width,int octaves,float biais) {
     Map map = GenerateMap(height,width);
     float* Seed = InitSeedArray(height,width);
-    Noise2D(map,6,Seed);
+    Noise2D(map,octaves,biais,Seed);
     free(Seed);
     SDL_Surface* img = load_image("src/to_test.png");
     gen_img(map.data,map.height,map.width,img);
