@@ -10,12 +10,12 @@
 #define HOUSE3 4
 #define STRUCTURE 2
 #define INTERSECTION 3
-#define HOUSE_WIDTH1 7
-#define HOUSE_LENGTH1 7
-#define HOUSE_WIDTH2 6
-#define HOUSE_LENGTH2 6
-#define HOUSE_WIDTH3 5
-#define HOUSE_LENGTH3 5
+#define HOUSE_WIDTH1 6
+#define HOUSE_LENGTH1 6
+#define HOUSE_WIDTH2 5
+#define HOUSE_LENGTH2 5
+#define HOUSE_WIDTH3 4
+#define HOUSE_LENGTH3 4
 #define MAX_ROAD_LENGTH 8
 #define MIN_ROAD_LENGTH 8
 
@@ -235,7 +235,7 @@ void draw_house(int* map, size_t len, int x, int y)
 		else if(width == HOUSE_WIDTH2)
 			map[(y-length)*len+x+1] = HOUSE2;
 		else
-			map[(y-1)*len+x+1] = HOUSE3;
+			map[(y-length)*len+x+1] = HOUSE3;
 	}
 	
 	//down-left:
@@ -319,11 +319,11 @@ void draw_house(int* map, size_t len, int x, int y)
 
 		valid = 1;
 	
-		i = y+1;
+		i = y;
 
 		while(i<y+length && i<len)
 		{
-			j = x+1;
+			j = x;
 			while(j<x+width && j<len && valid)
 			{
 				if(map[i*len+j] != CITY)
@@ -398,24 +398,26 @@ void printmat(int* mat, int len1, int len2)
 
 int main(int argc, int *argv[])
 {
-	int mat[] ={0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,3,1,1,1,1,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0,
-				0,1,1,1,1,3,0,0,0,0,0,0,
-				0,0,0,0,0,1,0,0,0,0,0,0};
+	int mat[] ={0,0,0,0,1,0,0,0,0,0,0,0,0,
+				0,0,0,0,1,0,0,0,0,0,0,0,0,
+				0,0,0,0,1,0,0,0,0,0,0,0,0,
+				0,0,0,0,1,0,0,0,0,0,0,0,0,
+				1,1,1,1,3,1,1,1,1,1,3,1,1,
+				0,0,0,0,0,0,0,0,0,0,1,0,0,
+				0,0,0,0,0,0,0,0,0,0,1,0,0,
+				0,0,0,0,0,0,0,0,0,0,1,0,0,
+				0,0,0,0,0,0,0,0,0,0,1,0,0,
+				0,0,0,0,0,0,0,0,0,0,1,0,0,
+				0,0,0,0,1,1,1,1,1,1,3,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,
 
-	printmat(mat,12,12);
+	};
+	printmat(mat,13,13);
 	printf("\n");
-	find_inter(mat, 12);
+	find_inter(mat, 13);
 	printf("\nresult:\n");
-	printmat(mat,12,12);
+	printmat(mat,13,13);
 }
 
 
