@@ -4,7 +4,7 @@
 
 #define MIN_LENGTH 6 //min length is equal to the max(width,heigth) of a house or building
 #define MAX_LENGTH 4*MIN_LENGTH
-#define INTERSECTION 4
+#define INTERSECTION 3
 #define NB_ROADS 20
 
 
@@ -23,90 +23,10 @@ int nb_rand(int min, int max)
   return nb;
 }
 
-int constructible(int*map, int fixed, int cols, int len, int i, int j, int max_pos, int vertical)
-{
-  int ok=1;
-  int min_len=MIN_LENGTH;
-  while(ok && min_len>0)
-    {
-      if(i-MIN_LENGTH>=0)
-	{
-	  if(vertical)
-	    {
-	      if(map[fixed*cols+i]==1 && len<MIN_LENGTH)
-		{
-		  ok=0;
-		}
-	    }
-	  else
-	    {
-	      if(map[i*cols+fixed]==1 && len<MIN_LENGTH)
-		{
-		  ok=0;
-		}
-	    }
-	}
-      if(j+MIN_LENGTH<max_pos)
-	{
-	  if (vertical)
-	    {
-	      if(map[fixed*cols+j]==1 && len<MIN_LENGTH)
-		{
-		  ok=0;
-		}
-	    }
-	  else
-	    {
-	      if(map[j*cols+fixed]==1 && len<MIN_LENGTH)
-		{
-		  ok=0;
-		}
-	    }
-	}
-      i--;
-      j++;
-      min_len--;
-    }
-  return ok;
-}
-
-
 int is_constructible(int*map,int x, int y, int len, int cols, int rows, int vertical, int direction)
 {
-  int ok=1;
-  int current_len=0;
-  while(ok && len>0)
-    {
-      if (vertical)//future road orientation
-	{
-	  ok=constructible(map, x, cols,current_len, (y-1), (y+1), cols, vertical);//determine is the road is constructible h
-	  if(direction)//top
-	    {
-	      x--;
-	    }
-	  else
-	    {
-	      x++;
-	    }
-	}
-      else
-	{
-	  ok=constructible(map, y, cols, current_len, (x-1), (x+1), rows, vertical);//determine is the road is constructible h
-	  if(direction)//left
-	    {
-	      y--;
-	    }
-	  else
-	    {
-	      y++;
-	    }
-	}
-      current_len++;
-      len--;
-    }
-  return len==0;
+ 
 }
-
 
 
 int define_dir(int x, int y, int cols, int rows, int vertical)
@@ -241,15 +161,6 @@ int draw_road(int* map, int x, int y, int r_size, int cols, int rows, int vertic
 	    }
 	}
     }
-  printf("====================draw the road======================\n");
-  for(int i=0; i<cols;i++)
-    {
-      for(int j=0; j<rows;j++)
-	{
-	  printf("%i",map[i*cols+j]);
-	}
-      printf("\n");
-    }
   return end;
 }
 
@@ -302,7 +213,6 @@ void build_roads(int* map, int rows, int cols)
 		  printf("waleur de x entre %i et %i\n",x-MIN_LENGTH , end);
 		  x=nb_rand(x-MIN_LENGTH,end);
 		}
-	       len=nb_rand(MIN_LENGTH,end);
 	    }
 	  else//the road is directed bot
 	    {
@@ -317,7 +227,6 @@ void build_roads(int* map, int rows, int cols)
 		  printf("waleur de x entre %i et %i\n",x+MIN_LENGTH , end);
 		  x=nb_rand(x+MIN_LENGTH,end);
 		}
-	       len=nb_rand(MIN_LENGTH,end);
 	    }
 	}
       else //current road is horizontal
@@ -335,7 +244,6 @@ void build_roads(int* map, int rows, int cols)
 		  printf("valeur de y entre %i et %i\n",y-MIN_LENGTH , end);
 		  y=nb_rand(y-MIN_LENGTH,end);
 		}
-	       len=nb_rand(MIN_LENGTH,end);
 	    }
 	   else//is directed right
 	    {
@@ -350,73 +258,71 @@ void build_roads(int* map, int rows, int cols)
 		  printf("waleur de y entre %i et %i\n",y+MIN_LENGTH , end);
 		  y=nb_rand(y+MIN_LENGTH,end);
 		}
-	       len=nb_rand(MIN_LENGTH,MAX_LENGTH);//len of the future road if main road is horizontal
 	    }
 	}
-      printf("new x=%i\n",x);
-      printf("new y=%i\n",y);
+      printf("x=%i\n",x);
+      printf("y=%i\n",y);
       direction=define_dir(x, y, cols, rows, !vertical);//new road orientation will be opp of the current road
+      printf("vertical= %i\n",vertical);
+      if(vertical)
+	{
+	  printf("horizontal\n");
+	  printf("cols-y=%i\n",cols-y);
+	  len=nb_rand(MIN_LENGTH,(cols-y))-1;
+	}
+      else
+	{
+	  printf("vertical\n");
+	  printf("rows-x=%i\n",rows-x);
+	  len=nb_rand(MIN_LENGTH,(rows-x))-1;
+	}
       printf("length road=%i\n",len);
       int test_y=y;
       int test_x=x;
-      int swap;
-      if(vertical)//main road vertical
+      printf("vertical = %i\n",vertical);
+      if(vertical)
 	{
-	  printf("new road is horizontal\n");
-	  if(direction)//future road direction : left
+	  printf("vertical = %i\n",vertical);
+	  if(direction)
 	    {
 	      test_y-=1;
 	    }
-	  else//right
+	  else
 	    {
 	      test_y+=1;
 	    }
-	  swap=map[test_x*cols+test_y];
-	  map[test_x*cols+test_y]=3;      
-	  printf("====================placement for testing======================\n");
-	  for(int i=0; i<cols;i++)
-	    {
-	      for(int j=0; j<rows;j++)
-		{
-	      printf("%i",map[i*cols+j]);
-		}
-	      printf("\n");
-	    }
-	  map[test_x*cols+test_y]=swap;
 	}
-      else//main road horizontal
+      else
 	{
-	  printf("new road will be vertical\n");
-	  if(direction)//future road direction: top
+	  printf("vertical = %i\n",vertical);
+	  if(direction)
 	    {
 	      test_x-=1;
 	    }
-	  else//bot
+	  else
 	    {
 	      test_x+=1;
 	    }
-	  swap=map[test_x*cols+test_y];
-	  map[test_x*cols+test_y]=3;      
-	  printf("====================placement for testing======================\n");
-	  for(int i=0; i<cols;i++)
-	    {
-	      for(int j=0; j<rows;j++)
-		{
-		  printf("%i",map[i*cols+j]);
-		}
-	      printf("\n");
-	    }
-	  map[test_x*cols+test_y]=swap;
 	}
-      
       printf("test_x = %i\n",test_x);
       printf("test_y = %i\n",test_y);
-      
+      int swap=map[test_x*cols+test_y];
+      map[test_x*cols+test_y]=3;      
+      printf("====================placement for testing======================\n");
+      for(int i=0; i<cols;i++)
+	{
+	  for(int j=0; j<rows;j++)
+	    {
+	      printf("%i",map[i*cols+j]);
+	    }
+		printf("\n");
+		}
+      map[test_x*cols+test_y]=swap;
       int constructible=is_constructible(map,test_x,test_y,(len-1),cols,rows,!vertical,direction);
       if(constructible)
 	{
 	  printf("my future road is constructible\n");
-	  end=draw_road(map,x,y,(len+1),cols,rows,!vertical,direction);//creation of the new road road
+	  end=draw_road(map,x,y,len,cols,rows,!vertical,direction);//creation of the new road road
 	}
       else
 	{
@@ -430,5 +336,14 @@ void build_roads(int* map, int rows, int cols)
       nb_roads--;
       vertical=!vertical;
       printf("\n\n");
+      printf("====================draw the road======================\n");
+      for(int i=0; i<cols;i++)
+	{
+	  for(int j=0; j<rows;j++)
+	    {
+	      printf("%i",map[i*cols+j]);
+	    }
+		printf("\n");
+	  }
     }
 }
