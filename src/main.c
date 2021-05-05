@@ -11,22 +11,25 @@ unsigned countBits(unsigned int number)
 }
 
 int main(int argc, char** argv) {
-  if(argc != 6)errx(0,"Syntax : ./SeedWorld [height] [width] [octaves] [biais] [Randreset]");
+  if(argc != 6)errx(0,"Syntax : ./SeedWorld [height] [width] [octaves] [biais] [seed]");
   
   int height = strtoul(argv[1], NULL, 10);
   int width = strtoul(argv[2], NULL, 10);
   int octaves = strtoul(argv[3], NULL, 10);
   float biais = atof(argv[4]);
-
-  if(strtoul(argv[5], NULL, 10))srand(time(0));
+  unsigned int Seed = strtoul(argv[5], NULL, 10);
+  
+  if(Seed==0)Seed = (unsigned int) (time(NULL));
+  srand(Seed);
+  printf("Seed:%i\n",Seed);
+  
   
   int minsize;
   if(height<width)minsize=height;
   else minsize=width;
   minsize = countBits(minsize);
   if(octaves>minsize)errx(1,"octaves is to big: must be %i max for this picture size",minsize);
-
-  printf("biais:%f\n",biais);
+  
   PerlinNoise(height,width,octaves,biais);
   
   return 0;

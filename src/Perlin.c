@@ -86,7 +86,7 @@ void PerlinNoise(int height, int width,int octaves,float biais) {
     float* Seed = InitSeedArray(height,width);
     Noise2D(map,octaves,biais,Seed);
     free(Seed);
-    SDL_Surface* img = load_image("src/to_test.png");
+    SDL_Surface* img = load_image("tested.bmp");
     gen_img(map.data,map.height,map.width,img);
     //printMap(map);
     free(map.data);

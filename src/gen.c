@@ -80,24 +80,27 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img)
     {
       for(size_t j = 0; j < rows; j++)
         {
-          if(*(mat + (i * cols + j)) < (float)0.7)
+          if(*(mat + (i * cols + j)) < (float)0.6)
             {
-              pixel = SDL_MapRGB(img->format, 0, 0, 87);
+              pixel = SDL_MapRGB(img->format, 9, 28, 87);
               *(mat_next + (i*cols + j)) = 0;
               //ocean
             }
-          else if (*(mat + (i * cols + j)) < (float)0.8)
-            {
-              pixel = SDL_MapRGB(img->format, 224, 205, 169);
-              *(mat_next + (i*cols + j)) = 1;
-              //sand
-            }
-          else
-            {
-              pixel = SDL_MapRGB(img->format, 0, 252, 0);
-              *(mat_next + (i*cols + j)) = 2;
-              //ground
-            }
+	  else
+	    {
+	      if (*(mat + (i * cols + j)) < (float)0.7)
+		{
+		  pixel = SDL_MapRGB(img->format, 58, 153, 68);
+		  *(mat_next + (i*cols + j)) = 1;
+		  //ground
+		}
+	      else
+		{
+		  pixel = SDL_MapRGB(img->format, 175, 175, 175);
+		  *(mat_next + (i*cols + j)) = 2;
+		  //mountain
+		}
+	    }
 
           put_pixel(img, i, j, pixel);
         }
