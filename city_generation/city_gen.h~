@@ -26,6 +26,9 @@ int is_constructible(int*map,int x, int y, int len, int cols,  int vertical, int
 //test if there is no other road near the future one
 int constructible(int*map, int x, int y,int fixed, int cols, int len, int i, int j, int vertical);
 
+//test if there is no other road next to our starting point
+int not_on(int*map,int x, int y, int cols, int vertical, int direction);
+
 //define the length of a road
 int define_len(int position, int max, int direction);
 
