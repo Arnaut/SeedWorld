@@ -44,7 +44,6 @@ int nb_rand(int min, int max)
 //================================== find the field======================================
 int buildable(int* map, int x, int y, int cols,  int height, int width)
 {
-  printf("======================buildable=========================\n");
   int ok =1;
   int j;
   while(x<height && ok)
@@ -54,16 +53,12 @@ int buildable(int* map, int x, int y, int cols,  int height, int width)
 	{
 	  if(!map[x*cols+j])//can not be constructible
 	    {
-	      printf("%sI can't be build\n\n",YEL);
-	      printf("%s",NRM);
 	      ok=0;
 	    }
 	  j++;
 	}
       x++;
     }
-  printf("%sok = %i\n\n",YEL,ok);
-  printf("%s",NRM);
   return ok;
 }
 int* find_fields(int* map, int cols, int rows)
@@ -83,31 +78,22 @@ int* find_fields(int* map, int cols, int rows)
       y=0;
       while((y<cols)&&(nb_cities>0))
 	{
-	  printf("%s======================main x & y=======================\n",CYA);
-	  printf("%s",NRM);
-	  printf("x=%i, y=%i\n\n",x,y);
-	  printf("TEST CITY1\n");
 	  city1=buildable(map,x,y,cols,x+ROWS1,y+COLS1);
-	  printf("\n");
-	  printf("TEST CITY2\n");
 	  city2=buildable(map,x,y,cols,x+ROWS2,y+COLS2);
 	  if(city1 && city2)//both city size are possible
 	    {
-	      printf("both cities are buildable\n");
 	      pick_it=nb_rand(0,1);//pick a random one
 	    }
 	  else
 	    {
 	      if(city1)
 		{
-		  printf("city1 will be build\n");
 		  pick_it=1;
 		}
 	      else
 		{
 		  if(city2)
 		    {
-		      printf("city2 will be build\n");
 		      pick_it=0;
 		    }
 		  else
@@ -116,10 +102,8 @@ int* find_fields(int* map, int cols, int rows)
 		    }
 		}
 	    }
-	  printf("pick_it = %i\n",pick_it);
 	  if(pick_it>=0)//a city can be build
 	    {
-	      printf("I go there\n\n");
 	      if(pick_it)//city1 will be build
 		{
 		  final_c=COLS1;
@@ -132,19 +116,11 @@ int* find_fields(int* map, int cols, int rows)
 		  final_r=ROWS2;
 		  map[x*cols+y]=3;
 		}
-	      printf("i = %i\n",i);
 	      position_x_y[i]=x; //saves the x position
-	      printf("final y = %i\n",y);
 	      position_x_y[i+1]=y; //saves the y position
 	      position_x_y[i+2]=final_c; //saves the cols 
 	      position_x_y[i+3]=final_r; //saves the rows
-	      printf("==========================position_x_y===========================\n");
-	      for(size_t test=0;test<NB_CITIES*4;test++)
-		{
-		  printf("%i ",position_x_y[test]);
-		}
 	      i+=4;
-	      printf("final i=%i\n",i);
 	      built=1;
 	      nb_cities--;
 	      y+=final_c*2;//space between cities
@@ -153,11 +129,9 @@ int* find_fields(int* map, int cols, int rows)
 	    {
 	      y++;
 	    }
-	  printf("final y= %i\n", y);
 	}
       if(built)
 	{
-	  printf("one city was built\n");
 	  x+=final_r*2;//space between cities
 	}
       else
@@ -165,8 +139,6 @@ int* find_fields(int* map, int cols, int rows)
 	  x++;
 	}
     }
-
-  printf("=========================RESULTS=============================\n");
   for(int i=0; i<rows;i++)
     {
       for(int j=0; j<cols;j++)
@@ -193,7 +165,6 @@ int* find_fields(int* map, int cols, int rows)
       printf("\n");
     }
   printf("\n\n");
-  
   return position_x_y;
 }
 //================================== build roads=======================================
@@ -216,29 +187,23 @@ int define_begin(int position, int direction, int end)
 {
   if(direction)//is directed top or left
     {
-      //printf("direction of main road = top\n");
       if(position-(MIN_LENGTH+1)<end)//out of the road
 	{
-	  //printf("valeur de x entre %i et %i\n",position , end);
 	  position=nb_rand(position,end);
 	}
       else//on the road
 	{
-	  //printf("waleur de x entre %i et %i\n",position-(MIN_LENGTH+1), end);
 	  position=nb_rand(position-(MIN_LENGTH+1),end);
 	}
     }
   else//the road is directed bot or right
     {
-      //printf("direction of the main road = bot\n");
       if(position+(MIN_LENGTH+1)>end)//out of the road
 	{
-	  //printf("waleur de x entre %i et %i\n",position , end);
 	  position=nb_rand(position,end);
 	}
       else//on the road
 	{
-	  //printf("waleur de x entre %i et %i\n",position+(MIN_LENGTH+1), end);
 	  position=nb_rand(position+(MIN_LENGTH+1),end);
 	}
     }
@@ -451,33 +416,6 @@ int draw_road(int* map, int x, int y, int len, int cols, int rows, int vertical,
 	  end=y-1;
 	}
     }
-  printf("====================draw the road======================\n");
-  for(int i=0; i<rows;i++)
-    {
-      for(int j=0; j<cols;j++)
-	{
-	  if(map[i*cols+j]==4)
-		{
-		  printf("%s%i",CYA,map[i*cols+j]);
-		  printf("%s",NRM);
-		}
-	      else
-		{
-		  if(map[i*cols+j])
-		    {
-		      printf("%s%i",YEL,map[i*cols+j]);
-		      printf("%s",NRM);
-		    }
-		  else
-		    {
-		      printf("%i",map[i*cols+j]);
-		    }
-		}
-	}
-      printf("\n");
-    }
-  printf("end = %i\n",end);
-  printf("=================== end draw road =====================\n");
   return end;
 }
 
@@ -502,20 +440,10 @@ void build_roads(int* map, int rows, int cols)
     {
       len=define_len(x,(rows-1),direction);
     }
-  /*printf("main road vertical= %i\n",vertical);
-  printf("direction main road = %i\n",direction);
-  printf("len =%i\n",len);
-  printf("x=%i\n",x);
-  printf("y=%i\n",y);
-  printf("nb tot road=%i\n",nb_roads);*/
   end=draw_road(map, x, y, len, cols, rows, vertical, direction,1);//return the end of the road
-  //printf("end main road= %i\n",end);
   
   while(nb_roads>0) //tracing all the secondary roads
     {
-      /*printf("============= new_road:%i ================\n",nb_roads);
-      printf("x = %i\n",x);
-      printf("y= %i\n",y);*/
       if(vertical)//current road is vertical
 	{
 	  x=define_begin(x,direction,end);
@@ -524,10 +452,7 @@ void build_roads(int* map, int rows, int cols)
 	{
 	  y=define_begin(y,direction,end);
 	}
-      /*printf("new x=%i\n",x);
-	printf("new y=%i\n",y);*/
       direction=define_dir(x, y, cols, rows, !vertical);//new road orientation will be opp of the current road
-      //printf("================ direction defined ===================\n");
       if(vertical)//define len
 	{
 	  len=define_len(y,(cols-1),direction);
@@ -539,78 +464,31 @@ void build_roads(int* map, int rows, int cols)
       
       test_y=y;
       test_x=x;
-      //int swap;
       if(vertical)//main road vertical
 	{
-	  //printf("new road is horizontal\n");
 	  if(direction)//future road direction : left
 	    {
-	      //printf("I will be left\n");
 	      test_y-=1;
 	    }
 	  else//right
 	    {
-	      //printf("I will be right\n");
 	      test_y+=1;
 	    }
 	}
       else//main road horizontal
 	{
-	  //printf("new road will be vertical\n");
 	  if(direction)//future road direction: top
 	    {
-	      //printf("I will be top\n");
 	      test_x-=1;
 	    }
 	  else//bot
 	    {
-	      //printf("i will be bot\n");
 	      test_x+=1;
 	    }
 	}
-      int swap;
-      swap=map[test_x*cols+test_y];
-      map[test_x*cols+test_y]=3;      
-      printf("====================placement for testing======================\n");
-      for(int i=0; i<rows;i++)
-	{
-	  for(int j=0; j<cols;j++)
-	    {
-	      if(map[i*cols+j]==3)
-		{
-		  printf("%s3",YEL);
-		  printf("%s",NRM);
-		}
-	      else
-		{
-		  if(map[i*cols+j])
-		    {
-		      printf("%s1",CYA);
-		      printf("%s",NRM);
-		    }
-		  else
-		    {
-		      printf("%i",map[i*cols+j]);
-		    }
-		}
-	    }
-	  printf("\n");
-	}
-	map[test_x*cols+test_y]=swap;
-      printf(" begin x = %i\n",x);
-      printf("begin y= %i\n",y);
-      printf("test_x = %i\n",test_x);
-      printf("test_y = %i\n",test_y);
-      printf("len = %i\n",len);
-
       constructible=is_constructible(map,test_x,test_y,len,cols,!vertical,direction);
       if(constructible)
 	{
-	  /*printf("my future road is constructible\n");
-	  printf("final x =%i\n",x);
-	  printf("final y =%i\n",y);
-	  printf("len =%i\n",len);
-	  printf("end= %i\n", end);*/
 	  end=draw_road(map,x,y,len,cols,rows,!vertical,direction,0);//creation of the new road road
 	}
       else
@@ -618,15 +496,13 @@ void build_roads(int* map, int rows, int cols)
 	  break;
 	}
       //orientation of the future road
-      //printf("future road will be verti=%i",vertical);
       nb_roads--;
       vertical=!vertical;
-      //printf("\n\n");
     }
-  /*printf("====================draw the road======================\n");
-  for(int i=0; i<cols;i++)
+  printf("====================draw the road======================\n");
+  for(int i=0; i<rows;i++)
     {
-      for(int j=0; j<rows;j++)
+      for(int j=0; j<cols;j++)
 	{
 	  if(map[i*cols+j]==4)
 		{
@@ -648,5 +524,6 @@ void build_roads(int* map, int rows, int cols)
 		}
 	}
       printf("\n");
-      }*/
+    }
+  printf("\n\n");
 }

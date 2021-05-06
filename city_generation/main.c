@@ -82,19 +82,11 @@ int map3[20*20]=
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   };
-/* 
-#define ROWS2 2100
-#define COLS2 1900
-int map2[4000]={0};
-  
-#define ROWS3 1900
-#define COLS3 2100
-int map3[4000]={0};
-*/
+
 int main()
 {
-  //build_roads(map1,ROWS,COLS);
-  //build_roads(map6,ROWS6,COLS6);
+  build_roads(map1,ROWS,COLS);
+  build_roads(map6,ROWS6,COLS6);
   //build_roads(map3,ROWS3,COLS3);
   /*
    printf("===========MAP2===========");
@@ -117,9 +109,9 @@ int main()
      }
   */
   int* cities_built=malloc(sizeof(int));
-  //cities_built=find_fields(map2, 20, 20);
+  cities_built=find_fields(map2, 20, 20);
   cities_built=find_fields(map3, 20, 20);
-  //cities_built=find_fields(map4, 20, 20);
-  //cities_built=find_fields(map5, 20, 20);
+  cities_built=find_fields(map4, 20, 20);
+  cities_built=find_fields(map5, 20, 20);
   return 0;
 }
