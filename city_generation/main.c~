@@ -7,11 +7,7 @@
 
 #define ROWS 50
 #define COLS 50
-#define ROWS6 200
-#define COLS6 100
-
 int map1[ROWS*COLS]={0};
-int map6[ROWS6*COLS6]={0};
 int map2[20*20]={0};
 int map3[20*20]=
   {
@@ -94,7 +90,7 @@ int map3[4000]={0};
 int main()
 {
   //build_roads(map1,ROWS,COLS);
-  //build_roads(map6,ROWS6,COLS6);
+  //build_roads(map2,ROWS2,COLS2);
   //build_roads(map3,ROWS3,COLS3);
   /*
    printf("===========MAP2===========");

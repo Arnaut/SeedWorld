@@ -1,13 +1,20 @@
 #ifndef CITY_GEN
 #define CITY_GEN
 
+//======================FIND FIELD=========================
+//verify ifa city can be build
+int buildable(int* map, int x, int y, int cols, int rows, int width, int height);
+//find a position where a city can be build
+int* find_fields(int* map, int cols, int rows);
+
+//=====================BUILD ROADS========================
 //get a random number between min and max;
 int nb_rand(int min, int max);
 
 //define the direction of a road based on its orientation
 int define_dir(int x, int y, int cols, int rows, int vertical);
 
-//draw the road
+//draw the road and returns its end
 int draw_road(int* map, int x, int y, int r_size, int cols, int rows, int vertical, int direction);
 
 //main fonction build all the roads of our future city
