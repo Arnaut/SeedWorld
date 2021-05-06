@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.18"/>
+  <object class="GtkWindow" id="org.gtk.SeedWorld">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">SeedWorld</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+          <object class="GtkGrid" id="grido">
+            <property name="width_request">300</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="row_spacing">5</property>
+            <property name="column_spacing">10</property>
+            <property name="column_homogeneous">False</property>
+            <child>
+              <object class="GtkButton" id="start_button">
+                <property name="label" translatable="yes">Start</property>
+                <property name="visible">True</property>
+                <property name="sensitive">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Choose a file to open</property>
+                <property name="margin_left">2</property>
+                <property name="margin_right">2</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+                <property name="width">40</property>
+                <property name="height">10</property>
+              </packing>
+            </child>
+            
+            <child>
+              <object class="GtkButton" id="close_button">
+                <property name="label" translatable="yes">Close</property>
+                <property name="visible">True</property>
+                <property name="sensitive">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Close the file</property>
+                <property name="margin_left">2</property>
+                <property name="margin_right">2</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">10</property>
+                <property name="width">40</property>
+                <property name="height">10</property>
+              </packing>
+            </child>
+          </object>
+    </child>
+  </object>
+
+  <object class="GtkGrid" id="grido2">
+        <property name="width_request">300</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">center</property>
+        <property name="halign">end</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
+        <property name="margin_top">5</property>
+        <property name="row_spacing">5</property>
+        <property name="column_spacing">10</property>
+        <property name="column_homogeneous">False</property>
+        
+        <child>
+          <object class="GtkButton" id="gen_start_button">
+            <property name="label" translatable="yes">Start Generation</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Run the generation process</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
+        
+        <child>
+          <object class="GtkButton" id="gen_param_button">
+            <property name="label" translatable="yes">Generation Parameters</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Set the generation parameters</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">10</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
+        
+        <child>
+          <object class="GtkButton" id="with_seed_button">
+            <property name="label" translatable="yes">Generate with seed</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Generate with a seed</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">20</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
+  </object>
+
+  <object class="GtkGrid" id="grido3">
+        <property name="width_request">300</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">center</property>
+        <property name="halign">end</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
+        <property name="margin_top">5</property>
+        <property name="row_spacing">5</property>
+        <property name="column_spacing">10</property>
+        <property name="column_homogeneous">False</property>
+        
+        <child>
+          <object class="GtkButton" id="get_seed_button">
+            <property name="label" translatable="yes">Get Seed</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Get the seed</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+          </packing>
+        </child>
+  </object>
+
+  <object class="GtkGrid" id="grido4">
+    <property name="width_request">300</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="halign">center</property>
+    <property name="margin_left">5</property>
+    <property name="margin_right">5</property>
+    <property name="margin_top">5</property>
+    <property name="row_spacing">5</property>
+    <property name="column_spacing">10</property>
+    <property name="row_homogeneous">True</property>
+
+    <child>
+      <object class="GtkScaleButton" id="biome_size">
+        <property name="label" translatable="yes">Biome Size</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Set biome size</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScaleButton" id="ratio">
+        <property name="label" translatable="yes">Proportion of Oceans</property>
+            <property name="visible">True</property>
+            <property name="sensitive">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Set the proportion of ocean</property>
+            <property name="margin_left">2</property>
+            <property name="margin_right">2</property>
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">10</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRadioButton" id="map_width">
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">20</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRadioButton" id="map_height">
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">30</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRadioButton" id="world">
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">40</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="back">
+        <property name="label" translatable="yes">Back</property>
+        <property name="visible">True</property>
+        <property name="sensitive">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Go back to generation</property>
+        <property name="margin_left">2</property>
+        <property name="margin_right">2</property>
+      </object>
+      <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">50</property>
+            <property name="width">40</property>
+            <property name="height">10</property>
+      </packing>
+    </child>
+
+  </object>
+  
+</interface>
+    
