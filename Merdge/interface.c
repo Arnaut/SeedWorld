@@ -191,7 +191,7 @@ void on_run(GtkButton *button,gpointer ui)//Arnaut Leyre
   int height = i->data.height;
   int width = i->data.width;
   
-  PerlinNoise(height,width,8,2,i->data.m,i->data.l,i->data.s,i->data.w,i->data.t,i->data.c);
+  PerlinNoise(height,width,8,2,i->data.m,i->data.l,i->data.s,i->data.w,i->data.t,i->data.c,i->data.w_type,i->data.on);
   char* buf;
   asprintf(&buf,"%i-%i.bmp",width,height);
   gtk_image_set_from_file(i->img,buf);

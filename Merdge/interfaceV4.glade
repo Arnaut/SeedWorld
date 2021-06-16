@@ -764,7 +764,7 @@
                                             <property name="receives-default">False</property>
                                             <property name="active">True</property>
                                             <property name="draw-indicator">True</property>
-                                            <property name="group">Fairy</property>
+                                            <property name="group">futuristic</property>
                                           </object>
                                           <packing>
                                             <property name="left-attach">0</property>

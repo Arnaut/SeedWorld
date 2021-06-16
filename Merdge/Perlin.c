@@ -86,7 +86,7 @@ void Noise2D (Map map,int octaves,float biais,float *Seed)
 }
 
 //Arnaut Leyre
-void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, int s, int w, int t, int c) {
+void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, int s, int w, int t, int c,int w_types, int on) {
     Map map_height = GenerateMap(height,width);
     Map map_temp = GenerateMap(height,width);
 
@@ -105,9 +105,13 @@ void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, in
     SDL_Surface* img = load_image(buff);
     float* threshold = seuil(height, width,map_height.data,s,l,m);
     int* relief = gen_img(map_height.data,map_height.height,map_height.width,img,map_height.min,map_height.max,threshold,buff);
-    float* threshold_temp = seuil(height, width,map_temp.data,w,t,c);
+    float* threshold_temp = seuil(height, width,map_temp.data,c,t,w);
     int* biomes = gen_biome(relief,map_temp.data,height,width,img,threshold_temp,buff);
 
+    if(on == 1)
+      {
+	(void)w_types;
+      }
     free(biomes);
     free(map_height.data);
     free(map_temp.data);

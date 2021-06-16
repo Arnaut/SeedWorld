@@ -16,5 +16,5 @@ struct Map GenerateMap(int height, int width);
 float* InitSeedArray(int height, int width);
 void printMap(struct Map map);
 void Noise2D (Map map,int octaves,float biais,float *Seed);
-void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, int s, int w, int t, int c);
+void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, int s, int w, int t, int c,int w_types,int on);
 #endif //MAIN_C_PERLIN_H
