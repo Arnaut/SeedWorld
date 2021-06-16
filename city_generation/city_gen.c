@@ -14,7 +14,7 @@
 
 
 //needed for build roads
-#define MIN_LENGTH 6 //min length is equal to the max(width,heigth) of a house or building
+#define MIN_LENGTH 50 //min length is equal to the max(width,heigth) of a house or building
 #define MAX_LENGTH 4*MIN_LENGTH
 #define INTERSECTION 4
 #define NB_ROADS 20
@@ -28,7 +28,7 @@
 
 int nb_rand(int min, int max)
 {
-  int nb=0;
+  static int rand_seed=0;
   int c;
   if(min>max)
     {
@@ -36,9 +36,12 @@ int nb_rand(int min, int max)
       min=max;
       max=c;
     }
-  srand(time(NULL));
-  nb=(rand()%(max+1-min))+min; //generate a number between min and max include
-  return nb;
+    if(!rand_seed)
+    {
+        srand(time(NULL));
+        rand_seed=1;
+    }
+  return (rand()%(max-min+1))+min; //generate a number between min and max include
 }
 
 //================================== find the field======================================

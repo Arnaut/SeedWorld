@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdio.h>
 #include "city_gen.h"
+#include "name_gen.h"
 
 
 
@@ -85,10 +86,9 @@ int map3[20*20]=
 
 int main()
 {
-  build_roads(map1,ROWS,COLS);
+  /*build_roads(map1,ROWS,COLS);
   build_roads(map6,ROWS6,COLS6);
   //build_roads(map3,ROWS3,COLS3);
-  /*
    printf("===========MAP2===========");
    for(size_t i=0;i<COLS2;i++)
      {
@@ -108,10 +108,12 @@ int main()
        printf("\n");
      }
   */
-  int* cities_built=malloc(sizeof(int));
+  /*int* cities_built=malloc(sizeof(int));
   cities_built=find_fields(map2, 20, 20);
   cities_built=find_fields(map3, 20, 20);
   cities_built=find_fields(map4, 20, 20);
-  cities_built=find_fields(map5, 20, 20);
+  cities_built=find_fields(map5, 20, 20);*/
+  char* final=name_gen(2);
+  printf("final word= %s\n",final);
   return 0;
 }
