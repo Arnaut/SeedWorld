@@ -104,9 +104,9 @@ void PerlinNoise(int height, int width,int octaves,float biais, int m, int l, in
 
     SDL_Surface* img = load_image(buff);
     float* threshold = seuil(height, width,map_height.data,s,l,m);
-    int* relief = gen_img(map_height.data,map_height.height,map_height.width,img,map_height.min,map_height.max,threshold);
+    int* relief = gen_img(map_height.data,map_height.height,map_height.width,img,map_height.min,map_height.max,threshold,buff);
     float* threshold_temp = seuil(height, width,map_temp.data,w,t,c);
-    int* biomes = gen_biome(relief,map_temp.data,height,width,img,threshold_temp);
+    int* biomes = gen_biome(relief,map_temp.data,height,width,img,threshold_temp,buff);
 
     free(biomes);
     free(map_height.data);

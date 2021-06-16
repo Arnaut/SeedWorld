@@ -1,9 +1,9 @@
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
-#include "pixel_operations.h"
 
 
 
@@ -17,6 +17,7 @@ typedef struct UserData //Leo Tripier
   int c;
   int width;
   int height;
+  int seed;
   int w_type;
 
 } UserData;
@@ -28,6 +29,7 @@ typedef struct UserInterface //Leo Tripier
   
   GtkButton* gen_run;
   GtkEntry* seed_text;
+  GtkButton* reroll;
 
   GtkRadioButton* weidth_1;
   GtkRadioButton* weidth_2;
@@ -52,69 +54,59 @@ typedef struct UserInterface //Leo Tripier
   UserData data;
 
 } UserInterface;
-
 // Signal handler for the "clicked" signal of the buttons.
 
-/*void on_start(GtkButton *button,gpointer ui)//Leo Tripier
+void gen_seed(UserInterface* ui)//Arnaut Leyre
 {
-    UserInterface* i = ui;
-    (void)button;
-    gtk_container_remove(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid1));
-    gtk_container_add(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid2));
+  srand(time(NULL));
+  unsigned int res = (unsigned int) rand();
+  char* buff;
+  asprintf(&buff,"%d",res);
+  gtk_entry_set_text(ui->seed_text,buff);
 }
 
-void on_with_seed(GtkButton *button,gpointer ui)//Leo Tripier
+void on_re(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
-  gtk_container_remove(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid2));
+  gen_seed(i);
 }
 
-void on_get_seed(GtkButton *button,gpointer ui)//Leo Tripier
+void on_w1(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
-  (void)i;
+  i->data.width = 1024;
 }
 
-void on_gen_start(GtkButton *button,gpointer ui)//Leo Tripier
+void on_w2(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
-  gtk_container_remove(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid2));
-  gtk_container_add(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid3));
+  i->data.width = 2048;
 }
 
-void on_gen_param(GtkButton *button,gpointer ui)//Leo Tripier
+void on_h1(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
-  gtk_container_remove(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid2));
-  gtk_container_add(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid4));
+  i->data.height = 1024;
 }
 
-void on_back(GtkButton* button, gpointer ui)//Leo Tripier
+void on_h2(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
-  gtk_container_remove(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid4));
-  gtk_container_add(GTK_CONTAINER(i->window),GTK_WIDGET(i->grid2));
-  i->data->b_size = gtk_scale_button_get_value(i->biome_size) / (gdouble)25.0;
-  i->data->r_ocean = gtk_scale_button_get_value(i->ratio) / (gdouble)100.0;
-}
-*/
-
-void on_gen_run(GtkButton *button,gpointer ui)//Arnaut Leyre
-{
-  UserInterface* i = ui;
-  (void)button;
-  (void)i;
+  i->data.height = 2048;
 }
 
 void on_ca(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   (void) button;
   UserInterface* i = ui;
+  i->data.m = gtk_adjustment_get_value(i->m);
+  i->data.l = gtk_adjustment_get_value(i->l);
+  i->data.s = gtk_adjustment_get_value(i->s);
   float m = (float) i->data.m;
   float l = (float) i->data.l;
   float s = (float) i->data.s;
@@ -131,6 +123,9 @@ void on_ct(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   (void) button;
   UserInterface* i = ui;
+  i->data.w = gtk_adjustment_get_value(i->w);
+  i->data.t = gtk_adjustment_get_value(i->t);
+  i->data.c = gtk_adjustment_get_value(i->c);
   float w = (float) i->data.w;
   float t = (float) i->data.t;
   float c = (float) i->data.c;
@@ -141,6 +136,22 @@ void on_ct(GtkButton *button,gpointer ui)//Arnaut Leyre
   gtk_adjustment_set_value(i->w,(gdouble)i->data.w);
   gtk_adjustment_set_value(i->t,(gdouble)i->data.t);
   gtk_adjustment_set_value(i->c,(gdouble)i->data.c);
+}
+
+void on_run(GtkButton *button,gpointer ui)//Arnaut Leyre
+{
+  on_ca(button,ui);
+  on_ct(button,ui);
+  UserInterface* i = ui;
+  (void)button;
+  const char* buff = gtk_entry_get_text(i->seed_text);
+  int res = 0;
+  int len = gtk_entry_get_text_length(i->seed_text);
+  for(int i = 0;i<len;i++)
+    {
+      res = res *10 + (int)(buff[i] - '0');
+    }
+  i->data.seed = res;
 }
 
 
@@ -172,8 +183,8 @@ int main()
        .w = 33,
        .t = 33,
        .c = 34,
-       .width = 2048,
-       .height = 2048,
+       .width = 1024,
+       .height = 1024,
        .w_type = 0,
       };
 
@@ -185,6 +196,7 @@ int main()
        
        .gen_run = GTK_BUTTON(gtk_builder_get_object(builder, "gen_run")),
        .seed_text = GTK_ENTRY(gtk_builder_get_object(builder, "seed_text")),
+       .reroll = GTK_BUTTON(gtk_builder_get_object(builder, "reroll")),
        
        .weidth_1 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "weidth_1")),
        .weidth_2 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "weidth_2")),
@@ -204,19 +216,27 @@ int main()
        .data = ud,
       };
 
+    gen_seed(&ui);
     // Connects signal handlers.
     //Leo Tripier
     g_signal_connect(ui.window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     //Arnaut Leyre
-    g_signal_connect(ui.gen_run, "clicked", G_CALLBACK(on_gen_run), &ui);
+    g_signal_connect(ui.gen_run, "clicked", G_CALLBACK(on_run), &ui);
+    g_signal_connect(ui.reroll, "clicked", G_CALLBACK(on_re), &ui);
 
     g_signal_connect(ui.c_altitude, "clicked", G_CALLBACK(on_ca), &ui);
     g_signal_connect(ui.c_temperature, "clicked", G_CALLBACK(on_ct), &ui);
+
+    g_signal_connect(GTK_BUTTON(ui.weidth_1), "clicked", G_CALLBACK(on_w1), &ui);
+    g_signal_connect(GTK_BUTTON(ui.weidth_2), "clicked", G_CALLBACK(on_w2), &ui);
+    g_signal_connect(GTK_BUTTON(ui.height_1), "clicked", G_CALLBACK(on_h1), &ui);
+    g_signal_connect(GTK_BUTTON(ui.height_2), "clicked", G_CALLBACK(on_h2), &ui);
     
     // Runs the main loop.
     gtk_main();
 
+    g_object_unref(builder);
     // Exits.
     return 0;
     }

@@ -10,8 +10,8 @@ void init_sdl();
 SDL_Surface* load_image(char *path);
 SDL_Surface* display_image(SDL_Surface *img);
 void wait_for_keypressed();
-int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img, float min, float max, float* threshold);
+int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img, float min, float max, float* threshold, char* file);
 float* seuil(size_t height,size_t width,float* mat, int ocean, int plains, int mountains);
-int* gen_biome(int* relief, float* temperature, size_t height, size_t width, SDL_Surface* img,float* threshold);
+int* gen_biome(int* relief, float* temperature, size_t height, size_t width, SDL_Surface* img,float* threshold, char* file);
 
 #endif

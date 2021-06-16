@@ -6,7 +6,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "pixel_operations.h"
-#include "pixel_operations.c"
+
 
 void init_sdl()
 {
@@ -76,7 +76,7 @@ void wait_for_keypressed()
 }*/
 
 //Leo Tripier
-int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img,float min, float max, float* threshold)
+int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img,float min, float max, float* threshold, char* file)
 {
   init_sdl();
   Uint32 pixel;
@@ -120,7 +120,7 @@ int* gen_img(float* mat, size_t rows, size_t cols, SDL_Surface* img,float min, f
 
   //display_image(img);
 
-  SDL_SaveBMP(img,"tested.bmp");
+  SDL_SaveBMP(img,file);
   //wait_for_keypressed();
 
   return mat_next;
@@ -173,7 +173,7 @@ float* seuil(size_t height, size_t width,float* mat, int ocean, int plains, int 
 }
 
 //Leo Tripier
-int* gen_biome(int* relief, float* temperature, size_t height, size_t width, SDL_Surface* img,float* threshold)
+int* gen_biome(int* relief, float* temperature, size_t height, size_t width, SDL_Surface* img,float* threshold,char* file )
 {
   init_sdl();
   Uint32 pixel;
@@ -247,8 +247,6 @@ int* gen_biome(int* relief, float* temperature, size_t height, size_t width, SDL
         }
     }
 
-  display_image(img);
-  wait_for_keypressed();
-
+  SDL_SaveBMP(img,file);
   return biomes;
 }

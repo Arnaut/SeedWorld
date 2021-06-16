@@ -5,7 +5,7 @@
 #include "Perlin.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
-#include "pixel_operations.h"
+
 
 
 
@@ -21,6 +21,7 @@ typedef struct UserData //Leo Tripier
   int height;
   int seed;
   int w_type;
+  int on;
 
 } UserData;
 
@@ -47,16 +48,20 @@ typedef struct UserInterface //Leo Tripier
   GtkAdjustment* w;
   GtkAdjustment* t;
   GtkAdjustment* c;
-  
-  
-  SDL_Surface* image_surface;    //the map that will be created
-  GtkBuilder* builder;           //just to save the builder
-  GtkWidget* image;              //the image gtk will display (the map generated)
 
+  GtkRadioButton* fairy;
+  GtkRadioButton* medieval;
+  GtkRadioButton* futuristic;
+
+  GtkToggleButton* on;
+  
+  GtkImage* image;              //the image gtk will display (the map generated)
+  
   UserData data;
 
 } UserInterface;
 // Signal handler for the "clicked" signal of the buttons.
+
 
 void gen_seed(UserInterface* ui)//Arnaut Leyre
 {
@@ -67,11 +72,41 @@ void gen_seed(UserInterface* ui)//Arnaut Leyre
   gtk_entry_set_text(ui->seed_text,buff);
 }
 
+void on(GtkButton *button,gpointer ui)//Arnaut Leyre
+{
+  UserInterface* i = ui;
+  (void)button;
+  if(i->data.on==1){ i->data.on = 0;}
+  else {i->data.on = 1;}
+}
+
+
 void on_re(GtkButton *button,gpointer ui)//Arnaut Leyre
 {
   UserInterface* i = ui;
   (void)button;
   gen_seed(i);
+}
+
+void on_t1(GtkButton *button,gpointer ui)//Arnaut Leyre
+{
+  UserInterface* i = ui;
+  (void)button;
+  i->data.w_type = 1;
+}
+
+void on_t2(GtkButton *button,gpointer ui)//Arnaut Leyre
+{
+  UserInterface* i = ui;
+  (void)button;
+  i->data.w_type = 2;
+}
+
+void on_t3(GtkButton *button,gpointer ui)//Arnaut Leyre
+{
+  UserInterface* i = ui;
+  (void)button;
+  i->data.w_type = 3;
 }
 
 void on_w1(GtkButton *button,gpointer ui)//Arnaut Leyre
@@ -159,6 +194,12 @@ void on_run(GtkButton *button,gpointer ui)//Arnaut Leyre
   int width = i->data.width;
   
   PerlinNoise(height,width,8,2,i->data.m,i->data.l,i->data.s,i->data.w,i->data.t,i->data.c);
+
+  char* buf;
+  asprintf(&buf,"%i-%i.bmp",width,height);
+  GError *error = NULL;
+  GdkPixbuf *pb = gdk_pixbuf_new_from_file(buff,&error);
+  gtk_image_set_from_pixbuf(i->image,pb);
 }
 
 
@@ -192,7 +233,8 @@ int main()
        .c = 34,
        .width = 1024,
        .height = 1024,
-       .w_type = 0,
+       .w_type = 3,
+       .on = 1,
       };
 
     //Arnaut Leyre & Leo Tripier
@@ -219,7 +261,14 @@ int main()
        .w = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "w")),
        .t = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "t")),
        .c = GTK_ADJUSTMENT(gtk_builder_get_object(builder, "c")),
-       
+
+       .fairy = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "fairy")),
+       .medieval = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "medieval")),
+       .futuristic = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "futuristic")),
+
+       .on = GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "on")),
+
+       .image = GTK_IMAGE(gtk_builder_get_object(builder, "image")),
        .data = ud,
       };
 
@@ -239,6 +288,14 @@ int main()
     g_signal_connect(GTK_BUTTON(ui.weidth_2), "clicked", G_CALLBACK(on_w2), &ui);
     g_signal_connect(GTK_BUTTON(ui.height_1), "clicked", G_CALLBACK(on_h1), &ui);
     g_signal_connect(GTK_BUTTON(ui.height_2), "clicked", G_CALLBACK(on_h2), &ui);
+
+     g_signal_connect(GTK_BUTTON(ui.fairy), "clicked", G_CALLBACK(on_t1), &ui);
+    g_signal_connect(GTK_BUTTON(ui.medieval), "clicked", G_CALLBACK(on_t2), &ui);
+    g_signal_connect(GTK_BUTTON(ui.futuristic), "clicked", G_CALLBACK(on_t3), &ui);
+
+    g_signal_connect(GTK_BUTTON(ui.on), "clicked", G_CALLBACK(on), &ui);
+
+    
     
     // Runs the main loop.
     gtk_main();
