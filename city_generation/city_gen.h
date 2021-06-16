@@ -1,15 +1,7 @@
 #ifndef CITY_GEN
 #define CITY_GEN
 
-//generates random number between min and max
-int nb_rand(int min, int max);
-
-//======================FIND FIELD=========================
-//find a position where a city can be build
-int* find_fields(int* map, int cols, int rows);
-
-//=====================BUILD ROADS========================
-//main fonction build all the roads of our future city
-void build_roads(int* map, int rows, int cols);
+//build the city
+void build_city(int* w_map, SDL_Surface* img,int w_rows,int w_cols,int type);
 
 #endif

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
-#include "city_gen.h"
+#include "roads_gen.h"
 #include <stdio.h>
 char* defined_tab_c(int type, int* max_c)
 {
@@ -252,11 +252,12 @@ char* finding_name(int p_voy, int type,int len, char* word)
     return word;
 }
 
-char* name_gen(int type)
+char* name_gen(int type,int* len)
 {
-    int len = nb_rand(6, 8);
+    int len_w = nb_rand(6, 8);
+    *len=len_w;
     int p_voy = 0;
-    char* word= malloc(sizeof(char) * len);
+    char* word= malloc(sizeof(char) * len_w);
     if (type==1)//fairy world
     {
         p_voy = 100;
@@ -270,5 +271,5 @@ char* name_gen(int type)
     {
         p_voy = 20;
     }
-    return finding_name(p_voy, type,len, word);
+    return finding_name(p_voy, type,len_w, word);
 }

@@ -1,13 +1,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-#include "city_gen.h"
+#include "roads_gen.h"
 #include "name_gen.h"
 
 
 
-#define ROWS 50
-#define COLS 50
+#define ROWS 2048
+#define COLS 2048
 #define ROWS6 200
 #define COLS6 100
 
@@ -86,19 +86,19 @@ int map3[20*20]=
 
 int main()
 {
-  /*build_roads(map1,ROWS,COLS);
-  build_roads(map6,ROWS6,COLS6);
+  build_roads(map1,ROWS,COLS);
+  //build_roads(map6,ROWS6,COLS6);
   //build_roads(map3,ROWS3,COLS3);
-   printf("===========MAP2===========");
-   for(size_t i=0;i<COLS2;i++)
-     {
-       for(size_t j=0; j<ROWS2; j++)
-	 {
-	   printf("%i",map2[i*COLS2+j]);
-	 }
-       printf("\n");
-     }
-   printf("===========MAP3===========");
+  printf("===========MAP2===========");
+  for(size_t i=0;i<COLS;i++)
+    {
+      for(size_t j=0; j<ROWS; j++)
+      {
+        printf("%i",map2[i*COLS+j]);
+      }
+      printf("\n");
+    }
+   /*printf("===========MAP3===========");
    for(size_t i=0;i<COLS3;i++)
      {
        for(size_t j=0; j<ROWS3; j++)
@@ -113,7 +113,5 @@ int main()
   cities_built=find_fields(map3, 20, 20);
   cities_built=find_fields(map4, 20, 20);
   cities_built=find_fields(map5, 20, 20);*/
-  char* final=name_gen(2);
-  printf("final word= %s\n",final);
   return 0;
 }
