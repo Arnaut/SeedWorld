@@ -7,8 +7,6 @@
 #include "SDL/SDL_image.h"
 
 
-
-
 typedef struct UserData //Leo Tripier
 {
   int m;
@@ -55,7 +53,7 @@ typedef struct UserInterface //Leo Tripier
 
   GtkToggleButton* on;
   
-  GtkImage* image;              //the image gtk will display (the map generated)
+  GtkImage* img;
   
   UserData data;
 
@@ -194,12 +192,9 @@ void on_run(GtkButton *button,gpointer ui)//Arnaut Leyre
   int width = i->data.width;
   
   PerlinNoise(height,width,8,2,i->data.m,i->data.l,i->data.s,i->data.w,i->data.t,i->data.c);
-
   char* buf;
   asprintf(&buf,"%i-%i.bmp",width,height);
-  GError *error = NULL;
-  GdkPixbuf *pb = gdk_pixbuf_new_from_file(buff,&error);
-  gtk_image_set_from_pixbuf(i->image,pb);
+  gtk_image_set_from_file(i->img,buf);
 }
 
 
@@ -268,7 +263,7 @@ int main()
 
        .on = GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "on")),
 
-       .image = GTK_IMAGE(gtk_builder_get_object(builder, "image")),
+       .img = GTK_IMAGE(gtk_builder_get_object(builder, "image")),
        .data = ud,
       };
 

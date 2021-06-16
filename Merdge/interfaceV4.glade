@@ -104,7 +104,7 @@
                                       <object class="GtkLabel" id="Title">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="label" translatable="yes">Gegeneration option:</property>
+                                        <property name="label" translatable="yes">Generation option:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -214,7 +214,7 @@
                                             <property name="height-request">50</property>
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">weidth</property>
+                                            <property name="label" translatable="yes">Weidth</property>
                                           </object>
                                           <packing>
                                             <property name="left-attach">0</property>
@@ -227,7 +227,7 @@
                                             <property name="height-request">50</property>
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">height</property>
+                                            <property name="label" translatable="yes">Height</property>
                                           </object>
                                           <packing>
                                             <property name="left-attach">1</property>
@@ -492,7 +492,7 @@
                                             </child>
                                             <child>
                                               <object class="GtkButton" id="c_altitude">
-                                                <property name="label" translatable="yes">confirme</property>
+                                                <property name="label" translatable="yes">Confirm</property>
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">True</property>
                                                 <property name="receives-default">True</property>
@@ -526,7 +526,7 @@
                                                     <property name="width-request">125</property>
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="label" translatable="yes">warm</property>
+                                                    <property name="label" translatable="yes">Warm</property>
                                                   </object>
                                                   <packing>
                                                     <property name="left-attach">0</property>
@@ -579,7 +579,7 @@
                                                     <property name="width-request">125</property>
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="label" translatable="yes">tempered</property>
+                                                    <property name="label" translatable="yes">Tempered</property>
                                                   </object>
                                                   <packing>
                                                     <property name="left-attach">0</property>
@@ -632,7 +632,7 @@
                                                     <property name="width-request">125</property>
                                                     <property name="visible">True</property>
                                                     <property name="can-focus">False</property>
-                                                    <property name="label" translatable="yes">cold</property>
+                                                    <property name="label" translatable="yes">Cold</property>
                                                   </object>
                                                   <packing>
                                                     <property name="left-attach">0</property>
@@ -677,14 +677,16 @@
                                             </child>
                                             <child>
                                               <object class="GtkButton" id="c_temperature">
-                                                <property name="label" translatable="yes">confirme</property>
+                                                <property name="label" translatable="yes">Confirm</property>
                                                 <property name="visible">True</property>
                                                 <property name="can-focus">True</property>
                                                 <property name="receives-default">True</property>
+                                                <property name="halign">center</property>
+                                                <property name="valign">start</property>
                                               </object>
                                               <packing>
-                                                <property name="expand">True</property>
-                                                <property name="fill">True</property>
+                                                <property name="expand">False</property>
+                                                <property name="fill">False</property>
                                                 <property name="position">3</property>
                                               </packing>
                                             </child>
@@ -704,7 +706,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkToggleButton" id="on">
-                                        <property name="label" translatable="yes">togglebutton</property>
+                                        <property name="label" translatable="yes">City : enable/desable</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="receives-default">True</property>
@@ -741,7 +743,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkRadioButton" id="futuristic">
-                                            <property name="label" translatable="yes">futuristic</property>
+                                            <property name="label" translatable="yes">Futuristic</property>
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">False</property>
@@ -756,7 +758,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkRadioButton" id="medieval">
-                                            <property name="label" translatable="yes">medieval</property>
+                                            <property name="label" translatable="yes">Medieval</property>
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">False</property>
