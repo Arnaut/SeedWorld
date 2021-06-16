@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra
-LDLIBS = -g
+CFLAGS = -g -Wall -Wextra -std=c99 -O3 `pkg-config --cflags sdl`
+LDLIBS = -g -pthread -lpthread -lm `pkg-config --libs sdl`
 
 all: $(EXEC)
 
