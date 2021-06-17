@@ -15,7 +15,7 @@
 #define H3 9
 
 
-void place_house(int* map, int rows, int cols, int r, int c, int house_type, int house_width, int house_length)
+void placeHouse(int* map, int rows, int cols, int r, int c, int house_type, int house_width, int house_length)
 {
 	for(int i = c; i< c+house_width; i++)
 		for(int j = r; j< r+house_length; j++)
@@ -39,7 +39,7 @@ int draw(int *map, int rows, int cols, int c, int r, int house_type, int house_w
 			}
 		}
 	}
-	place_house(map, rows, cols, r, c, house_type, house_width, house_length);
+	placeHouse(map, rows, cols, r, c, house_type, house_width, house_length);
 	return 1;
 }
 

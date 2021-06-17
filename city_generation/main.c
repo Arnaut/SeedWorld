@@ -94,7 +94,7 @@ int main()
     {
       for(size_t j=0; j<ROWS; j++)
       {
-        printf("%i",map2[i*COLS+j]);
+        printf("%i",map1[i*COLS+j]);
       }
       printf("\n");
     }*/

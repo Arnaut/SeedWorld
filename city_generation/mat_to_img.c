@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <err.h>
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "pixel_operation.h"
+#include "mat_to_img.h"
 
 
 #define CITY 0
@@ -18,17 +12,17 @@
 
 void place_house(SDL_Surface *img, int x, int y, int htype, int wtype)
 {
-	Uint8 *r;
-	Uint8 *g;
-	Uint8 *b;
-	
+	char *r=NULL;
+	char *g=NULL;
+	char *b=NULL;
+
 	Uint32 pixel;
 
-	SDL_Surface *house;
+	SDL_Surface *house =NULL;
 
 	//house sprite loading
 
-	if(wtpye ==0)
+	if(wtype ==1)
 	{
 		if(htype ==H1) 
 			house = SDL_LoadBMP("images/elf1b.bmp");
@@ -37,7 +31,7 @@ void place_house(SDL_Surface *img, int x, int y, int htype, int wtype)
 		else if(htype ==H3) 
 			house = SDL_LoadBMP("images/elf3b.bmp");
 	}
-	else if(wtype == 1)
+	else if(wtype == 3)
 	{
 		if(htype ==H1) 
 			house = SDL_LoadBMP("images/fut1.bmp");
@@ -76,9 +70,9 @@ void place_house(SDL_Surface *img, int x, int y, int htype, int wtype)
 
 void placeSprite(SDL_Surface *dst, SDL_Surface *src, int C, int R)
 {
-	Uint8 *r;
-	Uint8 *g;
-	Uint8 *b;
+	char *r=NULL;
+	char *g=NULL;
+	char *b=NULL;
 
 	
 	Uint32 pixel;
@@ -108,9 +102,9 @@ void drawName(char *s, int len)
 	SDL_Surface *img;
 	SDL_Surface *letter;
 
-	Uint8 *r;
-	Uint8 *g;
-	Uint8 *b;
+	char *r=NULL;
+	char *g=NULL;
+	char *b=NULL;
 	Uint32 pixel;
 
 	img = SDL_CreateRGBSurface(0, (7*len), 7, 32, 0, 0, 0, 0);
