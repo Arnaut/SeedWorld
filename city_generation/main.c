@@ -86,10 +86,10 @@ int map3[20*20]=
 
 int main()
 {
-  build_roads(map1,ROWS,COLS);
+  //build_roads(map1,ROWS,COLS);
   //build_roads(map6,ROWS6,COLS6);
   //build_roads(map3,ROWS3,COLS3);
-  printf("===========MAP2===========");
+  /*printf("===========MAP1===========");
   for(size_t i=0;i<COLS;i++)
     {
       for(size_t j=0; j<ROWS; j++)
@@ -97,7 +97,7 @@ int main()
         printf("%i",map2[i*COLS+j]);
       }
       printf("\n");
-    }
+    }*/
    /*printf("===========MAP3===========");
    for(size_t i=0;i<COLS3;i++)
      {
@@ -113,5 +113,10 @@ int main()
   cities_built=find_fields(map3, 20, 20);
   cities_built=find_fields(map4, 20, 20);
   cities_built=find_fields(map5, 20, 20);*/
+  int len;
+  char* final=name_gen(1,&len);
+  char* final2=name_gen(2,&len);
+  char* final3=name_gen(3,&len);
+  printf("féérique= %s    médiéval=%s    futuriste=%s",final,final2,final3);
   return 0;
 }

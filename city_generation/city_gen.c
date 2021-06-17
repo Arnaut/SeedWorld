@@ -3,6 +3,7 @@
 #include "mat_to_img.h"
 #include "pixel_operation.h"
 #include "house.h"
+#include <SDL.h>
 
 void build_city(int* w_map, SDL_Surface* img,int w_rows,int w_cols,int type)
 {

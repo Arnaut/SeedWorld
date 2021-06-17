@@ -271,27 +271,27 @@ svg circle:nth-child(2)
 
 .box:nth-child(2) svg circle:nth-child(2)
 {
-	stroke-dashoffset: calc(440 - ( 440 * 0 ) / 100);
+	stroke-dashoffset: calc(440 - ( 440 * 100 ) / 100);
 	stroke: #00b79b;
 }
 .box:nth-child(3) svg circle:nth-child(2)
 {
-	stroke-dashoffset: calc(440 - ( 440 * 80 ) / 100);
+	stroke-dashoffset: calc(440 - ( 440 * 100 ) / 100);
 	stroke: #70cba4;
 }
 .box:nth-child(4) svg circle:nth-child(2)
 {
-	stroke-dashoffset: calc(440 - ( 440 * 40 ) / 100);
+	stroke-dashoffset: calc(440 - ( 440 * 100 ) / 100);
 	stroke: #ebe70e;
 }
 .box:nth-child(5) svg circle:nth-child(2)
 {
-	stroke-dashoffset: calc(440 - ( 440 * 80 ) / 100);
+	stroke-dashoffset: calc(440 - ( 440 * 100 ) / 100);
 	stroke: #f75112;
 }
 .box:nth-child(6) svg circle:nth-child(2)
 {
-	stroke-dashoffset: calc(440 - ( 440 * 60 ) / 100);
+	stroke-dashoffset: calc(440 - ( 440 * 100 ) / 100);
 	stroke: #e3c900;
 }
 
